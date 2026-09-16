@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Empleado</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <h2>Registrar Nuevo Empleado</h2>
+<div class="card">
+        <h2>Registrar Nuevo Empleado</h2>
 
     <form action="guardar_empleado.php" method="POST">
         <label>DNI:</label><br>
@@ -28,5 +30,6 @@
     <?php if (isset($_GET['res'])): ?>
         <p><b><?php echo htmlspecialchars($_GET['res']); ?></b></p>
     <?php endif; ?>
+</div>
 </body>
 </html>

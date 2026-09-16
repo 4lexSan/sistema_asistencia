@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Reloj Marcador de Asistencia</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+<div class="card">
     <h2>Reloj Marcador de Asistencia</h2>
     
     <form action="procesar_marca.php" method="POST">
@@ -30,5 +32,6 @@
     <?php if (isset($_GET['mensaje'])): ?>
         <h3><?php echo htmlspecialchars($_GET['mensaje']); ?></h3>
     <?php endif; ?>
+</div>
 </body>
 </html>
