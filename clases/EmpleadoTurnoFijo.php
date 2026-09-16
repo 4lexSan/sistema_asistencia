@@ -4,21 +4,18 @@ require_once 'Empleado.php';
 class EmpleadoTurnoFijo extends Empleado {
     private string $horaEntradaOficial = "08:00:00";
 
-    public function registrarAsistencia(string $fecha, string $hora): array {
-        $marcas = $this->getMarcas();
-        $ultimaMarca = end($marcas);
-        $tipo = ($ultimaMarca && $ultimaMarca['tipo'] === 'ENTRADA') ? 'SALIDA' : 'ENTRADA';
+    public function registrarAsistencia(string $fecha, string $hora, string $tipoElegido): array {
+        $estado = "OK";
 
-        $estado = "A TIEMPO";
-        if ($tipo === 'ENTRADA' && $hora > $this->horaEntradaOficial) {
-            $estado = "TARDANZA";
+        if ($tipoElegido === 'ENTRADA') {
+            $estado = ($hora > $this->horaEntradaOficial) ? "TARDANZA" : "A TIEMPO";
         }
 
         return [
-            'dni' => $this->getDni(),
-            'fecha' => $fecha,
-            'hora' => $hora,
-            'tipo' => $tipo,
+            'dni'    => $this->getDni(),
+            'fecha'  => $fecha,
+            'hora'   => $hora,
+            'tipo'   => $tipoElegido,
             'estado' => $estado
         ];
     }

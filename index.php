@@ -2,18 +2,30 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Control de Asistencia</title>
+    <title>Reloj Marcador de Asistencia</title>
 </head>
 <body>
     <h2>Reloj Marcador de Asistencia</h2>
     
     <form action="procesar_marca.php" method="POST">
-        <label>Ingrese DNI:</label>
-        <input type="text" name="dni" required autofocus maxlength="8">
-        <button type="submit">Marcar</button>
+        <div>
+            <label>Ingrese DNI:</label><br>
+            <input type="text" name="dni" required autofocus maxlength="8">
+        </div>
+        <br>
+        <div>
+            <label>Seleccione Acción:</label><br>
+            <select name="tipo_marca" required>
+                <option value="ENTRADA">Entrada</option>
+                <option value="SALIDA">Salida</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit">Registrar Marca</button>
     </form>
 
-    <br><a href="registrar.php">Registrar Nuevo Empleado</a>
+    <br>
+    <a href="registrar.php">Registrar Nuevo Empleado</a>
 
     <?php if (isset($_GET['mensaje'])): ?>
         <h3><?php echo htmlspecialchars($_GET['mensaje']); ?></h3>

@@ -2,16 +2,12 @@
 require_once 'Empleado.php';
 
 class EmpleadoPorHoras extends Empleado {
-    public function registrarAsistencia(string $fecha, string $hora): array {
-        $marcas = $this->getMarcas();
-        $ultimaMarca = end($marcas);
-        $tipo = ($ultimaMarca && $ultimaMarca['tipo'] === 'ENTRADA') ? 'SALIDA' : 'ENTRADA';
-
+    public function registrarAsistencia(string $fecha, string $hora, string $tipoElegido): array {
         return [
-            'dni' => $this->getDni(),
-            'fecha' => $fecha,
-            'hora' => $hora,
-            'tipo' => $tipo,
+            'dni'    => $this->getDni(),
+            'fecha'  => $fecha,
+            'hora'   => $hora,
+            'tipo'   => $tipoElegido,
             'estado' => 'LIBRE'
         ];
     }
