@@ -1,0 +1,7 @@
+# Archivos de configuración local / contraseñas
+config/Conexion.php
+
+# Archivos del sistema operativo o editores
+.DS_Store
+.idea/
+.vscode/
