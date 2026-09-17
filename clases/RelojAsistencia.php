@@ -50,4 +50,15 @@ class RelojAsistencia {
             ':estado' => $marca['estado']
         ]);
     }
+
+    public function obtenerTodasLasAsistencias(): array {
+    $sql = "SELECT a.id, a.dni_empleado AS dni, e.nombre, a.fecha, a.hora, a.tipo, a.estado 
+            FROM asistencias a 
+            INNER JOIN empleados e ON a.dni_empleado = e.dni 
+            ORDER BY a.fecha DESC, a.hora DESC";
+    
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

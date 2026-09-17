@@ -27,7 +27,9 @@
     </form>
 
     <br>
-    <a href="registrar.php">Registrar Nuevo Empleado</a>
+    <a href="registrar.php" class="nav-link">Registrar Nuevo Empleado</a>
+    <br>
+    <a href="historial.php" class="nav-link">Ver Historial de Asistencias</a>
 
     <?php if (isset($_GET['mensaje'])): ?>
         <h3><?php echo htmlspecialchars($_GET['mensaje']); ?></h3>
