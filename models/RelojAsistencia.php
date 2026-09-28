@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/Conexion.php';
-require_once 'EmpleadoTurnoFijo.php';
-require_once 'EmpleadoPorHoras.php';
+require_once '../models/EmpleadoTurnoFijo.php';
+require_once '../models/EmpleadoPorHoras.php';
 
 class RelojAsistencia {
     private PDO $db;
@@ -19,7 +19,7 @@ class RelojAsistencia {
         if (!$empData) return null;
 
         // Consultar Historial de Asistencias del Empleado
-        $stmtMarcas = $this->db->prepare("SELECT fecha, hora, tipo, estado FROM asistencias WHERE dni_empleado = :dni ORDER BY id ASC");
+        $stmtMarcas = $this->db->prepare("SELECT fecha, hora, tipo, estado FROM asistencias WHERE empleado_dni = :dni ORDER BY id ASC");
         $stmtMarcas->execute([':dni' => $dni]);
         $marcas = $stmtMarcas->fetchAll(PDO::FETCH_ASSOC);
 
@@ -41,7 +41,7 @@ class RelojAsistencia {
     }
 
     public function guardarMarca(array $marca): bool {
-        $stmt = $this->db->prepare("INSERT INTO asistencias (dni_empleado, fecha, hora, tipo, estado) VALUES (:dni, :fecha, :hora, :tipo, :estado)");
+        $stmt = $this->db->prepare("INSERT INTO asistencias (empleado_dni, fecha, hora, tipo, estado) VALUES (:dni, :fecha, :hora, :tipo, :estado)");
         return $stmt->execute([
             ':dni' => $marca['dni'],
             ':fecha' => $marca['fecha'],
@@ -52,9 +52,9 @@ class RelojAsistencia {
     }
 
     public function obtenerTodasLasAsistencias(): array {
-    $sql = "SELECT a.id, a.dni_empleado AS dni, e.nombre, a.fecha, a.hora, a.tipo, a.estado 
+    $sql = "SELECT a.id, a.empleado_dni AS dni, e.nombre, a.fecha, a.hora, a.tipo, a.estado 
             FROM asistencias a 
-            INNER JOIN empleados e ON a.dni_empleado = e.dni 
+            INNER JOIN empleados e ON a.empleado_dni = e.dni 
             ORDER BY a.fecha DESC, a.hora DESC";
     
     $stmt = $this->db->prepare($sql);

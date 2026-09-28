@@ -1,5 +1,5 @@
 <?php
-require_once 'clases/RelojAsistencia.php';
+require_once '../models/RelojAsistencia.php';
 
 $reloj = new RelojAsistencia();
 $asistencias = $reloj->obtenerTodasLasAsistencias();
@@ -51,7 +51,7 @@ $asistencias = $reloj->obtenerTodasLasAsistencias();
             </div>
         <?php endif; ?>
 
-        <a href="index.php" class="nav-link">Volver al Reloj Marcador</a>
+        <a href="../views/index.php" class="nav-link">Volver al Reloj Marcador</a>
     </div>
 </body>
 </html>

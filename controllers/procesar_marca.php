@@ -1,9 +1,9 @@
 <?php
-require_once 'clases/RelojAsistencia.php';
+require_once '../models/RelojAsistencia.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dni = trim($_POST['dni']);
-    $tipoMarca = $_POST['tipo_marca']; // Captura 'ENTRADA' o 'SALIDA'
+    $tipoMarca = $_POST['tipo_marca'];
 
     $reloj = new RelojAsistencia();
     $empleado = $reloj->buscarPorDni($dni);
@@ -15,13 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fecha = date('Y-m-d');
         $hora = date('H:i:s');
 
-        // Pasamos el tipo elegido manualmente por el usuario
         $marcaData = $empleado->registrarAsistencia($fecha, $hora, $tipoMarca);
         $reloj->guardarMarca($marcaData);
 
         $msg = "✅ {$empleado->getNombre()} | Accion: {$marcaData['tipo']} | Hora: {$hora} | Estado: {$marcaData['estado']}";
     }
 
-    header("Location: index.php?mensaje=" . urlencode($msg));
+    header("Location: ../views/index.php?mensaje=" . urlencode($msg));
     exit;
 }

@@ -9,7 +9,7 @@
 <div class="card">
         <h2>Registrar Nuevo Empleado</h2>
 
-    <form action="guardar_empleado.php" method="POST">
+    <form action="../controllers/guardar_empleado.php" method="POST">
         <label>DNI:</label><br>
         <input type="text" name="dni" required maxlength="8"><br><br>
 

@@ -1,5 +1,5 @@
 <?php
-require_once 'Empleado.php';
+require_once '../models/Empleado.php';
 
 class EmpleadoPorHoras extends Empleado {
     public function registrarAsistencia(string $fecha, string $hora, string $tipoElegido): array {

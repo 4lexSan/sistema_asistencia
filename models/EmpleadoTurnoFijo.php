@@ -1,5 +1,5 @@
 <?php
-require_once 'Empleado.php';
+require_once '../models/Empleado.php';
 
 class EmpleadoTurnoFijo extends Empleado {
     private string $horaEntradaOficial = "08:00:00";

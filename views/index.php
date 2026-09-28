@@ -9,7 +9,7 @@
 <div class="card">
     <h2>Reloj Marcador de Asistencia</h2>
     
-    <form action="procesar_marca.php" method="POST">
+    <form action="../controllers/procesar_marca.php" method="POST">
         <div>
             <label>Ingrese DNI:</label><br>
             <input type="text" name="dni" required autofocus maxlength="8">

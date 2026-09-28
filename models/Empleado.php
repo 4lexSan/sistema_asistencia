@@ -18,6 +18,5 @@ abstract class Empleado {
         $this->marcas[] = $marca;
     }
 
-    // Polimorfismo: Cada clase hija calculará su estado (Tardanza / A tiempo)
     abstract public function registrarAsistencia(string $fecha, string $hora, string $tipoElegido): array;
 }

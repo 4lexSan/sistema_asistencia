@@ -1,5 +1,5 @@
 <?php
-require_once 'clases/RelojAsistencia.php';
+require_once '../models/RelojAsistencia.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dni = trim($_POST['dni']);
@@ -15,6 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $res = "❌ El DNI {$dni} ya se encuentra registrado.";
     }
 
-    header("Location: registrar.php?res=" . urlencode($res));
+    header("Location: ../views/registrar.php?res=" . urlencode($res));
     exit;
 }
