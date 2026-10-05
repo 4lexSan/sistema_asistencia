@@ -21,6 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $msg = "✅ {$empleado->getNombre()} | Accion: {$marcaData['tipo']} | Hora: {$hora} | Estado: {$marcaData['estado']}";
     }
 
-    header("Location: ../views/index.php?mensaje=" . urlencode($msg));
-    exit;
+    header("Location: ../index.php?mensaje=" . urlencode($msg));
+    exit; 
 }

@@ -10,7 +10,7 @@ $asistencias = $reloj->obtenerTodasLasAsistencias();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial de Asistencias</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../public/css/estilos.css">
 </head>
 <body>
     <div class="card card-wide">
@@ -51,7 +51,7 @@ $asistencias = $reloj->obtenerTodasLasAsistencias();
             </div>
         <?php endif; ?>
 
-        <a href="../views/index.php" class="nav-link">Volver al Reloj Marcador</a>
+        <a href="../index.php">Volver al Inicio</a>
     </div>
 </body>
 </html>

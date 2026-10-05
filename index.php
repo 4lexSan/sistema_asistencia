@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Reloj Marcador de Asistencia</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="public/css/estilos.css">
 </head>
 <body>
 <div class="card">
     <h2>Reloj Marcador de Asistencia</h2>
     
-    <form action="../controllers/procesar_marca.php" method="POST">
+    <form action="controllers/procesar_marca.php" method="POST">
         <div>
             <label>Ingrese DNI:</label><br>
             <input type="text" name="dni" required autofocus maxlength="8">
@@ -26,10 +26,11 @@
         <button type="submit">Registrar Marca</button>
     </form>
 
-    <br>
-    <a href="registrar.php" class="nav-link">Registrar Nuevo Empleado</a>
-    <br>
-    <a href="historial.php" class="nav-link">Ver Historial de Asistencias</a>
+    <div class="links-container">
+        <a href="views/registrar.php" class="nav-link">Registrar Nuevo Empleado</a>
+        <a href="views/historial.php" class="nav-link">Ver Historial de Asistencias</a>
+        <a href="views/reportes.php" class="nav-link">Generar Reporte por Persona</a>
+    </div>
 
     <?php if (isset($_GET['mensaje'])): ?>
         <h3><?php echo htmlspecialchars($_GET['mensaje']); ?></h3>

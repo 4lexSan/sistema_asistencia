@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Empleado</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../public/css/estilos.css">
 </head>
 <body>
 <div class="card">
@@ -25,7 +25,7 @@
         <button type="submit">Guardar Empleado</button>
     </form>
 
-    <br><a href="index.php">Volver al Reloj Marcador</a>
+    <a href="../index.php">Volver al Inicio</a>
 
     <?php if (isset($_GET['res'])): ?>
         <p><b><?php echo htmlspecialchars($_GET['res']); ?></b></p>
