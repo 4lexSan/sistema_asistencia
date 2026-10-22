@@ -1,9 +1,10 @@
 <?php
-require_once '../models/RelojAsistencia.php';
+require_once '../models/ReporteAsistencia.php';
 
-$reloj = new RelojAsistencia();
-$asistencias = $reloj->obtenerTodasLasAsistencias();
+$reporte = new ReporteAsistencia();
+$asistencias = $reporte->obtenerTodasLasAsistencias();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,45 +14,81 @@ $asistencias = $reloj->obtenerTodasLasAsistencias();
     <link rel="stylesheet" href="../public/css/estilos.css">
 </head>
 <body>
-    <div class="card card-wide">
-        <h2>Historial de Asistencias</h2>
 
-        <?php if (empty($asistencias)): ?>
-            <p style="text-align: center;">No hay registros de asistencia aún.</p>
-        <?php else: ?>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>DNI</th>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Tipo</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($asistencias as $row): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($row['dni']); ?></td>
-                                <td><?php echo htmlspecialchars($row['nombre']); ?></td>
-                                <td><?php echo htmlspecialchars($row['fecha']); ?></td>
-                                <td><?php echo htmlspecialchars($row['hora']); ?></td>
-                                <td><strong><?php echo htmlspecialchars($row['tipo']); ?></strong></td>
-                                <td>
-                                    <span class="badge <?php echo strtolower(str_replace(' ', '-', $row['estado'])); ?>">
-                                        <?php echo htmlspecialchars($row['estado']); ?>
-                                    </span>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+    <!-- BARRA SUPERIOR (NAVBAR) -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <span>⏱️</span>
+                <h2>Asistencia</h2>
             </div>
-        <?php endif; ?>
+            <nav class="navbar-menu">
+                <a href="../index.php" class="nav-item">
+                    <span>🏠</span> Inicio / Marcación
+                </a>
+                <a href="registrar.php" class="nav-item">
+                    <span>👤</span> Registrar Nuevo Empleado
+                </a>
+                <a href="historial.php" class="nav-item active">
+                    <span>📋</span> Ver Historial por Persona
+                </a>
+                <a href="reportes.php" class="nav-item">
+                    <span>📊</span> Generar Reporte por Persona
+                </a>
+            </nav>
+        </div>
+    </header>
 
-        <a href="../index.php">Volver al Inicio</a>
-    </div>
+    <!-- CONTENIDO -->
+    <main class="main-container">
+        <div class="card card-wide">
+            <h2>Historial de Asistencias</h2>
+            <br>
+            <?php if (count($asistencias) > 0): ?>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DNI</th>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($asistencias as $fila): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($fila['dni']); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['nombre']); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['fecha']); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['hora']); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['tipo']); ?></td>
+                                    <td>
+                                        <?php 
+                                            $estadoClass = 'badge';
+                                            $estadoTexto = strtolower($fila['estado']);
+                                            if (strpos($estadoTexto, 'tiempo') !== false || strpos($estadoTexto, 'puntual') !== false) {
+                                                $estadoClass .= ' badge-a-tiempo';
+                                            } elseif (strpos($estadoTexto, 'tardanza') !== false) {
+                                                $estadoClass .= ' badge-tardanza';
+                                            } else {
+                                                $estadoClass .= ' badge-libre';
+                                            }
+                                        ?>
+                                        <span class="<?php echo $estadoClass; ?>"><?php echo htmlspecialchars($fila['estado']); ?></span>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php else: ?>
+                <div class="alert alert-info">No hay marcas de asistencia registradas.</div>
+            <?php endif; ?>
+        </div>
+    </main>
+
 </body>
 </html>
